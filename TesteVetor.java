@@ -102,7 +102,7 @@ public class TesteVetor {
                     vetor.insertionSort();
                     writer.println("\nINSERTION SORT:");
                 }
-                writer.println("Operações realizadas: " + vetor.getComparacoes() + vetor.getTrocas());
+                writer.println("Operações (comp+trocas): " + (vetor.getComparacoes() + vetor.getTrocas()));
 
                 // Bloco 3: Busca Binária
                 vetor.resetContadores();
