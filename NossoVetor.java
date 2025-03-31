@@ -16,9 +16,24 @@ public class NossoVetor {
         this(10);
     }
 
-    private void resetContadores() {
+    public void resetContadores() {
         comparacoes = 0;
         trocas = 0;
+    }
+    public int getOcupacao() {
+        return ocupacao;
+    }
+    
+    public int[] getVetor() {
+        return vetor;
+    }
+
+    public long getComparacoes() {
+        return comparacoes;
+    }
+    
+    public long getTrocas() {
+        return trocas;
     }
 
     public void insere(int i) {
