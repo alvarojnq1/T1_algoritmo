@@ -20,10 +20,11 @@ public class NossoVetor {
         comparacoes = 0;
         trocas = 0;
     }
+
     public int getOcupacao() {
         return ocupacao;
     }
-    
+
     public int[] getVetor() {
         return vetor;
     }
@@ -31,7 +32,7 @@ public class NossoVetor {
     public long getComparacoes() {
         return comparacoes;
     }
-    
+
     public long getTrocas() {
         return trocas;
     }
@@ -144,21 +145,21 @@ public class NossoVetor {
 
     public void insertionSort() {
         resetContadores();
-        for (int j = 1; j < ocupacao; j++) {
-            int chave = vetor[j];
+
+        for (int j = 1; j < vetor.length; j++) {
+            int x = vetor[j];
             int i = j - 1;
-            while (i >= 0) {
+
+            while (i >= 0 && vetor[i] > x) {
                 comparacoes++;
-                if (vetor[i] > chave) {
-                    trocas++;
-                    vetor[i + 1] = vetor[i];
-                    i--;
-                } else {
-                    break;
-                }
+                vetor[i + 1] = vetor[i];
+                trocas++;
+                i--;
             }
+            comparacoes++;
+
+            vetor[i + 1] = x;
             trocas++;
-            vetor[i + 1] = chave;
         }
         imprimirEstatisticasOrdenacao("Insertion Sort");
     }
@@ -176,7 +177,7 @@ public class NossoVetor {
         if (estaVazio()) {
             throw new VetorVazioException("vetor vazio, não é possível realizar busca");
         }
-        
+
         for (int i = 0; i < ocupacao; i++) {
             comparacoes++;
             if (vetor[i] == valorPesquisado) {
@@ -193,26 +194,26 @@ public class NossoVetor {
         if (estaVazio()) {
             throw new VetorVazioException("vetor vazio, não é possível realizar busca");
         }
-        
+
         int inicio = 0;
         int fim = ocupacao - 1;
-        
+
         while (inicio <= fim) {
             comparacoes++;
             int meio = (inicio + fim) / 2;
-            
+
             if (vetor[meio] == valorPesquisado) {
                 imprimirEstatisticasBusca("Busca Binária", true);
                 return meio;
             }
-            
+
             if (valorPesquisado > vetor[meio]) {
                 inicio = meio + 1;
             } else {
                 fim = meio - 1;
             }
         }
-        
+
         imprimirEstatisticasBusca("Busca Binária", false);
         throw new ElementoNaoEncontradoException(valorPesquisado + " não encontrado");
     }
@@ -226,9 +227,9 @@ public class NossoVetor {
     public void executarOperacoesAutomaticas() {
         Random random = new Random();
         int elementoAleatorio = vetor[random.nextInt(ocupacao)];
-        
+
         System.out.println("\nElemento aleatório selecionado: " + elementoAleatorio);
-        
+
         // 1. Busca Linear
         System.out.println("\n[1] Executando Busca Linear...");
         long inicio = System.currentTimeMillis();
@@ -239,7 +240,7 @@ public class NossoVetor {
         }
         long fim = System.currentTimeMillis();
         System.out.println("Tempo Busca Linear: " + (fim - inicio) + "ms");
-        
+
         // 2. Ordenação + Busca Binária
         System.out.println("\n[2] Executando Insertion Sort + Busca Binária...");
         inicio = System.currentTimeMillis();
@@ -251,21 +252,21 @@ public class NossoVetor {
         }
         fim = System.currentTimeMillis();
         System.out.println("Tempo total ordenação + busca: " + (fim - inicio) + "ms");
-        
+
         // 3. Bubble Sort
         System.out.println("\n[3] Executando Bubble Sort...");
         inicio = System.currentTimeMillis();
         bubbleSort();
         fim = System.currentTimeMillis();
         System.out.println("Tempo Bubble Sort: " + (fim - inicio) + "ms");
-        
+
         // 4. Selection Sort
         System.out.println("\n[4] Executando Selection Sort...");
         inicio = System.currentTimeMillis();
         selectionSort();
         fim = System.currentTimeMillis();
         System.out.println("Tempo Selection Sort: " + (fim - inicio) + "ms");
-        
+
         // 5. Insertion Sort
         System.out.println("\n[5] Executando Insertion Sort...");
         inicio = System.currentTimeMillis();
