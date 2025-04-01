@@ -115,7 +115,7 @@ public class NossoVetor {
             for (int i = 0; i < ocupacao - vez; i++) {
                 comparacoes++;
                 if (vetor[i] > vetor[i + 1]) {
-                    trocas++;
+                    trocas += 3;
                     int aux = vetor[i];
                     vetor[i] = vetor[i + 1];
                     vetor[i + 1] = aux;
@@ -133,9 +133,10 @@ public class NossoVetor {
                 comparacoes++;
                 if (vetor[j] < vetor[min]) {
                     min = j;
+                    trocas++;
                 }
             }
-            trocas++;
+            trocas+= 3;
             int temp = vetor[i];
             vetor[i] = vetor[min];
             vetor[min] = temp;
